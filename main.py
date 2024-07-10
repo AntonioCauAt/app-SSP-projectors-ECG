@@ -26,8 +26,9 @@ with open('config.json','r') as config_f:
 
 # == LOAD DATA ==
 fname = config['mne']
-raw = mne.io.read_raw_fif(fname, verbose=False)
+raw = mne.io.read_epochs(fname, verbose=False)
 
+#here a change--- ecg_projs, ecg_events = mne.compute_proj_epochs(epochs, n_grad=1, n_mag=1, n_eeg=1, n_jobs=None, desc_prefix=None, meg='separate', verbose=None)
 ecg_projs, ecg_events = mne.preprocessing.compute_proj_ecg(raw, raw_event=None, tmin=config['tmin'], tmax=config['tmax'], n_grad=config['n_grad'],
             n_mag=config['n_mag'], n_eeg=config['n_eeg'], l_freq=config['l_freq'], h_freq=config['h_freq'], average=config['average'], 
             filter_length=config['filter_length'], 
@@ -43,6 +44,7 @@ mne.write_proj('out_dir/proj.fif', ecg_projs, overwrite=True)
 fig_ep = mne.viz.plot_projs_topomap(ecg_projs, info=raw.info)
 fig_ep.savefig(os.path.join('out_figs','ecg_projectors.png'))
 
+#epoch?
 ecg_evoked = mne.preprocessing.create_ecg_epochs(raw).average()
 ecg_evoked.apply_baseline((None, None))
 
