@@ -75,7 +75,7 @@ Brainlife App to compute SSP (signal-space projection) vectors for ECG artifacts
 
 ## Authors
 - Guiomar Niso
-- Antonio Caulín Atiénzar (antoniocaulinatienzar@gmail.com)
+- Antonio Caulín (antoniocaulinatienzar@gmail.com)
 - Maximilien Chaumon (maximilien.chaumon@icm-institute.org)
 
 ## Citations
